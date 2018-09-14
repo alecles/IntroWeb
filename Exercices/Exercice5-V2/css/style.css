@@ -1,0 +1,54 @@
+﻿main{
+	margin:0 auto; /* permet de centrer la page*/
+	width: 65%;
+	text-align: center;
+
+}
+
+
+nav
+{
+	width : 150px ;
+	border : 1px solid blue ;
+	position: relative;
+	left: 50px;
+	text-align: left;
+	bottom: -15px;
+}
+
+#section1
+{
+	border : 1px solid blue ;
+	width: 27%;
+	position:relative;
+	top: -100px;
+	right: -200px;
+	margin-left: 50px ;
+	vertical-align: top;
+
+
+}
+#section2{
+	border : 1px solid blue ;
+	width: 27%;
+	position:relative;
+	top: -237px;
+	right: -570px;
+	margin-left: 50px ;
+	vertical-align: top;
+
+
+
+}
+
+footer{
+	clear:left;
+	margin-top: 14.5pc;
+	position: relative;
+	top: -450px;
+
+}
+
+
+
+
