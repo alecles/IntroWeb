@@ -220,5 +220,15 @@ th,td{
 	text-align: center;
 }
 
+td:hover{
+	background-color: darkturquoise;
 
+}
 
+th:hover{
+	background-color: greenyellow;
+}
+
+h1{
+	text-align: center;
+}
