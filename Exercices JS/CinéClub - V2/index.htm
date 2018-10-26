@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
    <link rel="stylesheet" href="CSS/style.css">
    <title>Le Cinéclub</title>
@@ -14,16 +14,25 @@
       <p> Entrez le prix de base:<input id="txtBasePrix" name="txtBasePrix" ></p>
       <p> Entrez l'âge:<input id="txtAge" name="txtAge" ></p>
 
-      <p> Sélectionnez le choix du film:<input id="lstFilm" name="lstFilm" ></p>
+      <p> Sélectionnez le choix du film:<select id="lstFilm" name="lstFilm" ></p>
+         <option value="Halloween">Halloween</option>
+         <option value="GP2">Grandes Personnes 2</option>
+         <option value="Alice">Alice au Pays des Merveilles</option>
+      </select> <br> <br>
        <!-- Radio bouton -->
       Midi<input type="radio" name="radChoix" checked="true" id="radMidi">
-      Soir<input type="radio" name="radChoix" id="radSoir">
+      Soir<input type="radio" name="radChoix" id="radSoir"> <br>
+
+      <br>
+
+      Mi-Session<input type="checkbox" name="MiSession" id="MiSession">
       <!-- label affichage -->
       <p id="lblMessage" name="lblMessage"></p>
       <!-- Bouton -->
       <p><button id="btnCalculer" name="btnCalculer" type="button" onclick="btnCalculer_onclick()">Calculer</button></p>
-      <script src="js/traitement.js"></script>
+
    </fieldset>
 </form>
+<script src="js/traitement.js"></script>
 </body>
 </html>
