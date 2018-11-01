@@ -3,42 +3,18 @@ function btnCalculer_onclick()
  	var Num;
  	var Jour;
 
- 	Num = parseFloat(document.getElementById("txtNumSem").value)
+ 	Num = parseFloat(document.getElementById("txtNumSem").value);
 
-    if (Num == 1)
+    switch (Num)
     {
-        Jour = "Dimanche"
-    }
+        case 1 : Jour = "Dimanche"; break;
+        case 2: Jour = "Lundi"; break;
+        case 3: Jour = "Mardi"; break;
+        case 4: Jour = "Mercredi"; break;
+        case 5: Jour = "Jeudi"; break;
+        case 6: Jour = "Vendredi"; break;
+        case 7: Jour = "Samedi"; break;
 
-    else if (Num == 2)
-    {
-        Jour = "Lundi"
     }
-
-    else if (Num == 3)
-    {
-        Jour = "Mardi"
-    }
-
-    else if (Num == 4)
-    {
-        Jour = "Mercredi"
-    }
-
-    else if (Num == 5)
-    {
-        Jour = "Jeudi"
-    }
-
-    else if (Num == 6)
-    {
-        Jour = "Vendredi"
-    }
-
-    else
-    {
-        Jour = "Samedi"
-    }
-
     console.log("Il est " +Jour);
 }

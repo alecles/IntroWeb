@@ -9,25 +9,15 @@ function btnCalculer_onclick()
     Nbre2 = parseFloat(document.getElementById("txtNbre2").value);
     Operateur = document.getElementById("txtOperateur").value;
 
-    if (Operateur == "+")
+    switch (Operateur)
     {
-        Res = Nbre1 + Nbre2;
+        case "+": Res = Nbre1 + Nbre2; break;
+        case "-": Res = Nbre1 - Nbre2; break;
+        case "*": Res = Nbre1 * Nbre2; break;
+        case "/": Res = Nbre1 / Nbre2; break;
+
     }
 
-    else if (Operateur == "-")
-    {
-        Res = Nbre1 - Nbre2;
-    }
-
-    else if (Operateur == "*")
-    {
-        Res = Nbre1 * Nbre2;
-    }
-
-    else if (Operateur == "/")
-    {
-        Res = Nbre1 / Nbre2;
-    }
 
     console.log(Res.toFixed(2));
     console.log("Le résultat est:" + Res);
