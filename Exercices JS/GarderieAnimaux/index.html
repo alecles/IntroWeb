@@ -19,15 +19,15 @@
 		<option value="Mélissa Caron" >Mélissa Caron</option>
 	</select>
 
-	<p class="Align"> Entrez le nombre de jours:<input class="champ" id="txtNbreJours" name="txtNbreJours" value="">  </p> 
-
+	<p class="Align"> Entrez le nombre de jours:<input class="champ" id="txtNbreJours" name="txtNbreJours" value="">  </p>
+	<p class="Align"> Entrez le nombre d'heure que le vétérinaire travaille:<input class="champ" id="txtNbreHeure" name="txtNbreHeure" value="">  </p>
 	<!-- Case à cocher -->
 	<p class="Align">Service de toilettage<input type="checkbox" id="chkServ" name="chkServ">  </p> 
 
 	<!-- Case à cocher -->
 	<p class="Align">
-	Chien<input type="radio" name="radChoix" checked=true id="radChien">
-	Chat<input type="radio" name="radChoix" id="radChat">
+	Chien<input type="radio" name="radChoix" checked=true id="radChien" value ="afficher" onclick = "btnAfficher_onclick()">
+	Chat<input type="radio" name="radChoix" id="radChat" onclick = "btnAfficher2_onclick()">
 	</p>
 
 	<!-- label affichage -->
@@ -36,6 +36,10 @@
 	<!-- Bouton -->
 	<input class="label_plus" id="btnCalculer" name="btnCalculer" value="C   A   L   C   U   L   E   R" type="button" onclick="btnCalculer_onclick()"> 
 </form>
+<p>
+	<img id ="img1" name = "img1">
+	<img id ="img2" name = "img2">
+</p>
 <script src="JS/traitement.js"></script>
 </body>
 </html>
