@@ -1,87 +1,98 @@
-function btnCalculer_onclick()
-{ 
- 	var Veterinaire;
- 	var NbJour;
- 	var Service;
- 	var Toilettage;
- 	var Animal;
- 	var Total;
- 	var RabaisJ;
- 	var NbreHeure;
- 	var Salaire;
+var ChoixVeterinaire, Total, NbrJrs, CoutToilettage, service,rabais,Heure,tauxHoraire,animaux;
 
-    Veterinaire = document.getElementById("lstVeterinaire").value;
-    NbJour = parseFloat(document.getElementById("txtNbreJours").value);
-    NbreHeure = parseFloat(document.getElementById("txtNbreHeure").value);
+function btnCalculer_onclick(){
+    saisirInforamtion();
+    choixToilettage();
+    choixAnimaux();
+    saisirNbrJrs();
+    choixVeterinaire();
+    calculerVariables();
+    afficherInformations();
+}
 
-
-    switch (Veterinaire)
-    {
-        case "Audrey Bouchard": Salaire = 25; break;
-        case "Stéphane Tremblay": Salaire = 35; break;
-        case "Maxime Simard": Salaire = 40; break;
-        case "Mélissa Caron": Salaire = 45; break;
+function saisirInforamtion()
+{
+    ChoixVeterinaire = document.getElementById("lstVeterinaire").value;
+    NbrJrs = parseFloat(document.getElementById("txtNbreJours").value);
+    Heure = parseFloat(document.getElementById("txtHeure").value);
+}
+function choixToilettage()
+{
+    if (document.getElementById("chkServ").checked == true) {
+        CoutToilettage = 5;
+        service = "avec";
     }
-
-    if (document.getElementById("chkServ").checked == true)
-    {
-        Service = 5;
-        Toilettage = "avec";
+    else {
+        CoutToilettage = 0;
+        service = "sans";
     }
-
-    else
-    {
-        Service = 0;
-        Toilettage = "sans";
-    }
-
-    if (document.getElementById("radChien").checked == true)
-    {
-        Animal = "Chien";
+}
+function choixAnimaux()
+{
+    if (document.getElementById("radChien").checked == true) {
         Total = 18.50;
-    }
+        animaux="chien";
 
-    else
-    {
-        Animal = "Chat";
+    }
+    else {
         Total = 16.95;
-
+        animaux="chat";
     }
-
-    if (NbJour < 5)
-    {
-        RabaisJ = 1;
-    }
-
-    else if (NbJour >= 5 && NbJour < 10)
-    {
-        RabaisJ = 1.05;
-    }
-
-    else if (NbJour >= 10 && NbJour < 30)
-    {
-        RabaisJ = 1.1;
-    }
-
-    else if (NbJour > 30)
-    {
-        RabaisJ = 1.15;
-    }
-
-    Total = (Total * 1.14975 * Salaire * NbreHeure) + Service;
-    Total = Total / RabaisJ;
-
-
-
-    console.log("Vétérinaire responsable est " +Veterinaire+ ". Le montant pour la garde de votre " +Animal+ " est de " +Total.toFixed(2)+ " pour " +NbJour+ " jours, " +Toilettage+ " service de toilettage.");
 }
-
-function btnAfficher_onclick()
+function saisirNbrJrs()
 {
-    document.getElementById("img1").src = "img/boxer-mix-mongrel-from-cdc6-diaporama.jpg";
+    if (1<=NbrJrs && NbrJrs<5)
+    {
+        rabais=1;
+    }
+    else if(5<=NbrJrs && NbrJrs<10)
+    {
+        rabais=0.95;
+    }
+    else if(10<=NbrJrs && NbrJrs<30)
+    {
+        rabais=0.90;
+    }
+    else if(30<=NbrJrs)
+    {
+        rabais=0.85;
+    }
 }
-
-function btnAfficher2_onclick()
+function choixVeterinaire()
 {
-    document.getElementById("img2").src = "img/chat-double-face-chimère-700x460.jpg";
+    switch(ChoixVeterinaire)
+    {
+        case "Audrey Bouchard": tauxHoraire=25*Heure;
+            break;
+        case "Stéphane Tremblay": tauxHoraire=35*Heure;
+            break;
+        case "Maxime Simard": tauxHoraire=40*Heure;
+            break;
+        case "Mélissa Caron": tauxHoraire=45*Heure;
+            break;
+    }
+}
+function calculerVariables()
+{
+    Total=(((((Total*NbrJrs)+CoutToilettage)*rabais)*1.14975)+tauxHoraire);
+}
+function afficherInformations()
+{
+    console.log("Le total es de "+ Total.toFixed(2)+"$" +" pour un nombre d'heure est de "+Heure +" avec le vétérinaire "+ ChoixVeterinaire + " avec un salaire de "+tauxHoraire+" pour "+NbrJrs+" jours "+" et "+service+" toilettage "+" pour un "+animaux );
+    document.getElementById("lblMessage").innerHTML="Le total es de "+ Total.toFixed(2)+" $ " +" pour un nombre d'heure de "+Heure +" avec le vétérinaire "+ ChoixVeterinaire + " avec un salaire de"+tauxHoraire+" pour "+NbrJrs+" jours "+" et "+service+" toilettage "+" pour un "+animaux
+}
+function btnAfficher_onclick(){
+    document.getElementById("img1").src= "img/Content.jpg";
+}
+function btnAfficher2_onclick(){
+    document.getElementById("img2").src= "img/Rien.jpg";
+}
+function btnAfficher3_onclick(){
+    document.getElementById("img3").src= "img/Triste.jpg";
+}
+function btnAfficher4_onclick(){
+    document.getElementById("img4").src= "img/chien.jpg";
+}
+function btnAfficher5_onclick(){
+    document.getElementById("img5").src= "img/chat.jpg";
 }

@@ -13,7 +13,7 @@ function btnCalculer_onclick()
     Total = (Nb1 * 1) + (Nb5 *5) + (Nb10 * 10) + (Nb25 * 25);
     Total= Total/100;
 
-    console.log(Total.toFixed(2))
+    console.log(Total.toFixed(2));
     console.log("Le montant total est de :" +Total);
 
 
