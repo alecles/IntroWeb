@@ -1,107 +1,128 @@
-var CptJoueur = 0;
+var Nom,Points;
+var cptNom=0;nombrePoint=0;
 var tabPoint = new Array(4);
 var tabJoueur = new Array(4);
-
-
-
-function btnAjouter_onclick()
+function btnRechercher_onclick()
 {
-
-    var Nom =document.getElementById("btnRechercher".value);
-    var Points = parseFloat(document.getElementById("txtPoints").value);
-    tabJoueur[CptJoueur] = Nom;
-    tabPoint[CptJoueur] = Points;
-    CptJoueur ++;
-    ActiverOption();
-    document.getElementById("lblNbreJoueur").innerHTML = "Numéro du joueur "+(CptJoueur + 1);
+    rechercherJoueur();
 }
-
-function ActiverOption()
+function  btnAjouter_onclick()
 {
-    if (CptJoueur > 3)
-    {
-        document.getElementById("btnTrouverMoy").disabled = false;
-        document.getElementById("btnAjouter").disabled = true;
-        document.getElementById("btnTrouverMeilleur").disabled = false;
-        document.getElementById("btnTrouverPire").disabled = false;
-        document.getElementById("btnRechercher").disabled = false;
-    }
-
+    saisirInformation();
+    calculerJoueurs();
+    ajouterCondition();
+    changerJoueur();
 }
-
 function btnTrouverMoy_onclick()
 {
-    var i, Moyenne = 0;
-    for (i=0;i<tabJoueur.length; i++)
-    {
-        Moyenne+= tabPoint[i];
-    }
-    Moyenne = Moyenne/tabJoueur.length;
-    console.log("La moyenne est de " +Moyenne);
-    document.getElementById("lblReponse").innerHTML = "La moyenne est de " +Moyenne;
+    saisirMoyenne();
 }
-
 function btnTrouverMeilleur_onclick()
 {
-    var i, PtsMeilleur = 0, NomMeilleur, Meilleur;
-    for (i = 0; i < tabJoueur.length; i++)
-    {
-        if (Meilleur <= tabPoint[i])
-        {
-            Meilleur = tabPoint[i];
-            PtsMeilleur = tabPoint[i];
-            NomMeilleur = tabJoueur[i];
-        }
-    }
-    console.log("Le meilleur pointage est de " +PtsMeilleur);
-    document.getElementById("lblReponse").innerHTML = "Le meilleur joueur est " +NomMeilleur+ " qui a obtenu la note de " +PtsMeilleur;
-}
 
+    SaisirMeilleurPointage();
+}
 function btnTrouverPire_onclick()
 {
-        var i, PtsPire = 0, NomPire, Pire;
-        for (i = 0; i < tabJoueur.length; i++)
+
+    SaisirPirePointage();
+}
+function saisirInformation()
+{
+    Nom=document.getElementById("txtNom").value;
+    Points= parseInt(document.getElementById("txtPoints").value);
+}
+function calculerJoueurs()
+{
+    cptNom++;
+    tabJoueur[cptNom-1]=Nom;
+    tabPoint[cptNom-1]=Points;
+}
+function saisirMoyenne ()
+{
+    var i,moyenne=0;
+    for(i=0;i<tabPoint.length;i++)
+    {
+        moyenne+=tabPoint[i];
+    }
+    moyenne=moyenne/tabPoint.length;
+    document.getElementById("lblReponse").innerHTML="La moyenne est de  " + moyenne;
+}
+function SaisirMeilleurPointage()
+{
+    var i,meilleurJoueur,meilleurPointage;
+
+    var max=0;
+
+    for(i=0;i<tabPoint.length;i++)
+    {
+        if(max<=tabPoint[i])
         {
-            if (Pire >= tabPoint[i])
-            {
-                Pire = tabPoint[i];
-                PtsPire = tabPoint[i];
-                NomPire = tabJoueur[i];
-            }
+            max=tabPoint[i];
+            meilleurPointage=tabPoint[i];
+            meilleurJoueur=tabJoueur[i];
+
         }
-        console.log("Le pire pointage est de " +PtsPire);
-        document.getElementById("lblReponse").innerHTML = "Le pire joueur est " + NomPire+" qui a obtenu la note de " +PtsPire;
+    }
+    document.getElementById("lblReponse").innerHTML="Le meilleur pointage est de  " + meilleurPointage + " réalisé par "+meilleurJoueur;
+}
+function ajouterCondition() {
+
+    if ( cptNom>=0&&cptNom>3)
+    {
+        document.getElementById("btnAjouter").disabled = true;
+        document.getElementById("btnRechercher").disabled = false;
+        document.getElementById("btnTrouverMoy").disabled = false;
+        document.getElementById("btnTrouverMeilleur").disabled = false;
+        document.getElementById("btnTrouverPire").disabled = false;
+    }
 }
 
-    function btnRechercher_onclick()
+function SaisirPirePointage()
+{
+    var i,pireJoueur,pirePoints;
+
+    var pire=100;
+
+    for(i=0;i<tabPoint.length;i++)
     {
-        var NomRechercher = document.getElementById("txtNom").value;
-        var TrouverNom = false;
-
-        while (TrouverNom == false)
+        if(pire>=tabPoint[i])
         {
-            var i=0;
-            if (NomRechercher== tabJoueur[i] && tabJoueur[i] <4)
-            {
-                document.getElementById("lblReponse").innerHTML = " Le score du joueur " +NomRechercher+ " est de " +tabPoint[i];
-                TrouverNom = true;
-            }
-
-            else
-            {
-                i++;
-            }
-
+            pire=tabPoint[i];
+            pirePoints=tabPoint[i];
+            pireJoueur=tabJoueur[i];
         }
 
-        if (TrouverNom == true)
-        {
-            document.getElementById("lblReponse").innerHTML = "Le nombre de point de" +tabJoueur[i]+ " est de " +tabPoint[i];
-        }
-
-        else
-            {
-            document.getElementById("lblReponse").innerHTML = "Le nom que vous chercher est introuvable."
-            }
     }
+    document.getElementById("lblReponse").innerHTML="Le pire pointage est de  " +pirePoints + " réalisé par "+ pireJoueur;
+}
+function changerJoueur()
+{
+    document.getElementById("lblNbreJoueur").innerHTML="Numéro du joueur " +(cptNom+1);
+}
+function rechercherJoueur()
+{
+    var trouver=false;
+    var Nom=document.getElementById("txtNom").value;
+    cptNom=0;
+    while(trouver==false && cptNom<=3)
+    {
+        if (tabJoueur[cptNom]==Nom)
+        {
+            trouver=true;
+        }
+        else
+        {
+            cptNom++;
+        }
+    }
+    if(trouver==true)
+    {
+        document.getElementById("lblReponse").innerHTML=tabJoueur[cptNom]+" a obtenu un pointage de "+tabPoint[cptNom]+" points ";
+    }
+    else
+    {
+        document.getElementById("lblReponse").innerHTML="Aucun nom ne correspond ";
+    }
+}
 

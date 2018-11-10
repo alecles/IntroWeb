@@ -1,94 +1,71 @@
-function btnCalculer_onclick() {
-    var PrixBase;
-    var Age;
-    var Rabais;
-    var Total;
-    var Heure;
-    var MiSession;
-    var Film;
+var PrixBase,Age,ChoixFilm,Total,Rabais,Heure;
+function btnCalculer_onclick()
+{
+    saisirInfo();
+    conditionInfo();
+    calculInfo();
 
-    PrixBase = parseFloat(document.getElementById("txtBasePrix").value);
+}
+function conditionInfo()
+{
+    if(Age<=16 &&  document.getElementById("chkSession").checked == true )
+    {
+        if(  document.getElementById("radMidi").checked == true)
+        {
+            Heure ="midi";
+            Rabais=0.40;
+        }
+        else
+        {
+            Heure="soir";
+            Rabais=0.60;
+        }
+
+    }
+
+    else if(Age>16 &&  document.getElementById("chkSession").checked == true)
+    {
+        if( document.getElementById("radMidi").checked == true)
+        {
+            Heure ="midi";
+            Rabais=0.70;
+        }
+        else{
+            Heure="soir";
+
+        }
+
+    }
+    else if( document.getElementById("chkSession").checked == true)
+    {
+        Rabais=1;
+        Heure ="midi";
+    }
+    else {
+        Rabais=1;
+        Heure="soir";
+    }
+}
+
+function saisirInfo()
+{
+    ChoixFilm = document.getElementById("lstFilm").value;
+    PrixBase  = parseFloat(document.getElementById("txtBasePrix").value);
     Age = parseFloat(document.getElementById("txtAge").value);
-    Film = document.getElementById("lstFilm").value;
+}
 
-    if (Age <= 16)
-    {
+function calculInfo()
+{
+    Total= PrixBase*Rabais;
 
-    if (document.getElementById("radMidi").checked == true)
-        {
-        Rabais = 1.60;
-        Heure = "Midi"
-        }
+    console.log("Le total es de "+ Total.toFixed(2)+"$"+  " pour le film " + ChoixFilm + " qui est à " + Heure +" et qui est âgé de " + Age );
 
-    else
-        {
-        Rabais = 1.40;
-        Heure = "Soir"
-        }
+}
 
-        if (document.getElementById("MiSession").checked == true)
-        {
-            MiSession = 1.20;
+function btnDeroulant_onchange1(num)
+{
+    document.getElementById("photo").src = "img/"+num+".jpg";
 
-        }
-
-        else
-        {
-            MiSession = 1;
-        }
-
-    }
-
-    else
-    {
-
-        if (document.getElementById("radMidi").checked == true)
-        {
-            Rabais = 1.30;
-            Heure = "Midi"
-        }
-
-        else
-        {
-            Rabais = 1;
-            Heure = "Soir"
-        }
-
-        if (document.getElementById("MiSession").checked == true)
-        {
-            MiSession = 1.20;
-        }
-
-        else
-        {
-            MiSession = 1;
-        }
-    }
-
-    Total = PrixBase / Rabais;
-    Total = Total / MiSession;
-
-    console.log(Total.toFixed(2));
-    console.log("Un billet du " +Heure+ " pour un spectateur de " +Age+ " coûte " +Total+ " $ pour le film " +Film+ ".");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+}
 
 
