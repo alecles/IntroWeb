@@ -58,7 +58,7 @@ function calculInfo()
 {
     Total= PrixBase*Rabais;
 
-    console.log("Le total es de "+ Total.toFixed(2)+"$"+  " pour le film " + ChoixFilm + " qui est à " + Heure +" et qui est âgé de " + Age );
+    console.log("Le total est de "+ Total.toFixed(2)+"$"+  " pour le film " + ChoixFilm + " qui est à " + Heure +" et qui est âgé de " + Age );
 
 }
 
