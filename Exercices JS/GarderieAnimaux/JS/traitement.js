@@ -1,13 +1,16 @@
-var ChoixVeterinaire, Total, NbrJrs, CoutToilettage, service,rabais,Heure,tauxHoraire,animaux;
-
 function btnCalculer_onclick(){
-    saisirInforamtion();
-    choixToilettage();
-    choixAnimaux();
-    saisirNbrJrs();
-    choixVeterinaire();
-    calculerVariables();
-    afficherInformations();
+
+    if (validerChampsObli()===true)
+    {
+        saisirInforamtion();
+        choixToilettage();
+        choixAnimaux();
+        saisirNbrJrs();
+        choixVeterinaire();
+        calculerVariables();
+        afficherInformations(cell,nom);
+    }
+
 }
 
 function saisirInforamtion()
@@ -15,9 +18,12 @@ function saisirInforamtion()
     ChoixVeterinaire = document.getElementById("lstVeterinaire").value;
     NbrJrs = parseFloat(document.getElementById("txtNbreJours").value);
     Heure = parseFloat(document.getElementById("txtHeure").value);
+    nom= document.getElementById("txtNom").value;
+    cell = document.getElementById("txtCell").value;
 }
 function choixToilettage()
 {
+    var CoutToilettage;
     if (document.getElementById("chkServ").checked == true) {
         CoutToilettage = 5;
         service = "avec";
@@ -26,21 +32,23 @@ function choixToilettage()
         CoutToilettage = 0;
         service = "sans";
     }
+    return CoutToilettage;
 }
 function choixAnimaux()
 {
     if (document.getElementById("radChien").checked == true) {
-        Total = 18.50;
+        total = 18.50;
         animaux="chien";
 
     }
     else {
-        Total = 16.95;
+        total = 16.95;
         animaux="chat";
     }
 }
 function saisirNbrJrs()
 {
+
     if (1<=NbrJrs && NbrJrs<5)
     {
         rabais=1;
@@ -57,9 +65,11 @@ function saisirNbrJrs()
     {
         rabais=0.85;
     }
+
 }
 function choixVeterinaire()
 {
+
     switch(ChoixVeterinaire)
     {
         case "Audrey Bouchard": tauxHoraire=25*Heure;
@@ -71,15 +81,16 @@ function choixVeterinaire()
         case "Mélissa Caron": tauxHoraire=45*Heure;
             break;
     }
+
 }
 function calculerVariables()
 {
-    Total=(((((Total*NbrJrs)+CoutToilettage)*rabais)*1.14975)+tauxHoraire);
+    Total=(((((total*NbrJrs)+CoutToilettage)*rabais)*1.14975)+tauxHoraire);
 }
-function afficherInformations()
+function afficherInformations(cell,nom)
 {
     console.log("Le total es de "+ Total.toFixed(2)+"$" +" pour un nombre d'heure est de "+Heure +" avec le vétérinaire "+ ChoixVeterinaire + " avec un salaire de "+tauxHoraire+" pour "+NbrJrs+" jours "+" et "+service+" toilettage "+" pour un "+animaux );
-    document.getElementById("lblMessage").innerHTML="Le total es de "+ Total.toFixed(2)+" $ " +" pour un nombre d'heure de "+Heure +" avec le vétérinaire "+ ChoixVeterinaire + " avec un salaire de"+tauxHoraire+" pour "+NbrJrs+" jours "+" et "+service+" toilettage "+" pour un "+animaux
+    document.getElementById("lblMessage").innerHTML="Bonjour"+nom+"le total es de "+ Total.toFixed(2)+" $ " +" pour un nombre d'heure de "+Heure +" avec le vétérinaire "+ ChoixVeterinaire + " avec un salaire de"+tauxHoraire+" pour "+NbrJrs+" jours "+" et "+service+" toilettage "+" pour un "+animaux+" nous voous conctacterons à ce numéro "+cell;
 }
 function btnAfficher_onclick(){
     document.getElementById("img1").src= "img/Content.jpg";
@@ -95,4 +106,34 @@ function btnAfficher4_onclick(){
 }
 function btnAfficher5_onclick(){
     document.getElementById("img5").src= "img/chat.jpg";
+}
+function validerChampsObli()
+{
+    var tabnomId=new Array("lstVeterinaire","txtNbreJours","txtHeure","txtNom","txtCell");
+    var valide=true;
+    var i;
+    for(i=0;i<tabnomId.length;i++)
+    {
+        if(valideExist(tabnomId[i])===false)
+        {
+            valide=false;
+        }
+
+    }
+    return valide;
+}
+function valideExist(nomId)
+{
+    var valide =true;
+    if (document.getElementById(nomId).value ==="")
+    {
+        valide=false;
+        document.getElementById(nomId).style.backgroundColor="red";
+
+    }
+    else {
+        valide=true;
+        document.getElementById(nomId).style.backgroundColor="white";
+    }
+    return valide;
 }
