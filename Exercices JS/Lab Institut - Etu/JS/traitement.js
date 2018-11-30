@@ -14,7 +14,8 @@ function valideTousChampsObligatoires()
     var i;
     var tableau = new Array("txtNom","txtPrenom","txtAdresse","txtCodePostal","txtVille","txtTel","txtCodePerm");
     var Valide = false;
-    for (i = 0; i< tableau.length; i++)
+
+    for (i = 0; i < tableau.length; i++)
     {
         if (validExist(tableau[i]) === true)
         {
@@ -34,35 +35,77 @@ function valideFormats()
         document.getElementById("txtNom").style.borderColor = "red";
         Valide = false;
     }
+    else
+    {
+        document.getElementById("txtNom").style.borderColor = "grey";
+        Valide = true;
+    }
 
-    else if (valideNomPrenomVille(document.getElementById("txtPrenom").value) == false)
+
+    if (valideNomPrenomVille(document.getElementById("txtPrenom").value) == false)
     {
         document.getElementById("txtPrenom").style.borderColor = "red";
         Valide = false;
     }
+    else
+    {
+        document.getElementById("txtPrenom").style.borderColor = "grey";
+        Valide = true;
+    }
 
-    else if (valideNomPrenomVille(document.getElementById("txtVille").value) == false)
+    if (valideNomPrenomVille(document.getElementById("txtVille").value) == false)
     {
         document.getElementById("txtVille").style.borderColor = "red";
         Valide = false;
     }
+    else
+    {
+        document.getElementById("txtVille").style.borderColor = "grey";
+        Valide = true;
+    }
 
-    else if (valideAdresse(document.getElementById("txtAdresse").value) == false)
+    if (valideAdresse(document.getElementById("txtAdresse").value) == false)
     {
         document.getElementById("txtAdresse").style.borderColor = "red";
         Valide = false;
     }
+    else
+    {
+        document.getElementById("txtAdresse").style.borderColor = "grey";
+        Valide = true;
+    }
 
-    else if (validePostal(document.getElementById("txtCodePostal").value) == false)
+    if (validePostal(document.getElementById("txtCodePostal").value) == false)
     {
         document.getElementById("txtCodePostal").style.borderColor = "red";
         Valide = false;
     }
+    else
+    {
+        document.getElementById("txtCodePostal").style.borderColor = "grey";
+        Valide = true;
+    }
 
-    else if (valideTel(document.getElementById("txtTel").value) == false)
+    if (valideTel(document.getElementById("txtTel").value) == false)
     {
         document.getElementById("txtTel").style.borderColor = "red";
         Valide = false;
+    }
+    else
+    {
+        document.getElementById("txtTel").style.borderColor = "grey";
+        Valide = true;
+    }
+
+    if (valideCode(document.getElementById("txtCodePerm").value) == false)
+    {
+        document.getElementById("txtCodePerm").style.borderColor = "red";
+        Valide = false;
+    }
+    else
+    {
+        document.getElementById("txtCodePerm").style.borderColor = "grey";
+        Valide = true;
     }
 
     return Valide;
@@ -86,6 +129,11 @@ function validePostal(chaine)
 function valideTel(chaine)
 {
     return /^(([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4})$/.test(chaine);
+}
+
+function valideCode(chaine)
+{
+    return /^[A-z]{4}[0-9]{8}$/.test(chaine);
 }
 
 function traiterInfo()
