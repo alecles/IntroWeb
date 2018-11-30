@@ -13,13 +13,13 @@ function valideTousChampsObligatoires()
 {
     var i;
     var tableau = new Array("txtNom","txtPrenom","txtAdresse","txtCodePostal","txtVille","txtTel","txtCodePerm");
-    var Valide = false;
+    var Valide = true;
 
     for (i = 0; i < tableau.length; i++)
     {
-        if (validExist(tableau[i]) === true)
+        if (validExist(tableau[i]) === false)
         {
-            Valide = true;
+            Valide = false;
         }
         return Valide;
     }
